@@ -18,7 +18,7 @@ class DistributorController extends Controller
     {
         // Generate random string
         $code = 'HID-'.rand(100000, 999999);
-        
+
         auth()->user()->distributors()->create($request->validated() + ['code' => $code]);
 
         return back()->with('message', 'data added successfully');
@@ -40,9 +40,10 @@ class DistributorController extends Controller
 
     public function delete(Distributor $distributor)
     {
+
         if($distributor->user_id != auth()->id())
         {
-            abort(403,'Unauthorised Action');
+            return back()->with('message','Unauthorised Action');
         }
         $distributor->delete();
 

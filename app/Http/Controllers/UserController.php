@@ -74,6 +74,10 @@ class UserController extends Controller
 
     public function delete(User $user)
     {
+        if($user->user_id != auth()->id())
+        {
+            return back()->with('message','You can not delete master admin');
+        }
         $user->delete();
 
         return redirect(route('admin.show'))->with('message','data deleted successfully');

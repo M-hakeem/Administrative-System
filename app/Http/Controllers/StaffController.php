@@ -40,7 +40,7 @@ class StaffController extends Controller
     {
         if($staff->user_id != auth()->id())
         {
-            abort(403,'Unauthorised Action');
+            return back()->with('message','Unauthorised Action');
         }
         $staff->delete();
 

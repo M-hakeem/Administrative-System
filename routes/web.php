@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
 
@@ -49,8 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/staff/casual',[StaffController::class,'casual'])->name('staff.casual');
 
     Route::delete('staffs/{staff}',[StaffController::class,'delete'])->name('staff.delete');
-
-
 });
 
 Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate')->middleware('guest');
