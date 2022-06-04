@@ -15,7 +15,7 @@
                                             <th scope="col">Department</th>
                                             <th scope="col">Position</th>
                                             <th scope="col">Category</th>
-                                            <th scope="col">Status</th>
+                                            <th colspan="2" scope="col">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -27,7 +27,12 @@
                                             <td>{{ $staff->department }}</td>
                                             <td>{{ $staff->position }}</td>
                                             <td>{{ $staff->category }}</td>
-                                            <td>{{ $staff->status }}</td>
+                                            <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
+                                            <form method="POST" action="{{ route('staff.delete',['staff' => $staff]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <td style="color: red"><button style="border:0px;" class="glyphicon glyphicon-trash fa-1x"></button></td>
+                                            </form>
                                         </tr>
                                         @empty
                                         <tr>

@@ -18,9 +18,10 @@ class DistributorController extends Controller
     {
         // Generate random string
         $code = 'HID-'.rand(100000, 999999);
+        
         auth()->user()->distributors()->create($request->validated() + ['code' => $code]);
 
-        return back()->with('message', 'data added succesfully');
+        return back()->with('message', 'data added successfully');
     }
 
     public function show(Distributor $distributor)
@@ -35,5 +36,16 @@ class DistributorController extends Controller
         $suspended = Distributor::whereStatus('Inactive')->paginate(10);
 
         return view('Distributor.suspended_distributor_data',compact('suspended'));
+    }
+
+    public function delete(Distributor $distributor)
+    {
+        if($distributor->user_id != auth()->id())
+        {
+            abort(403,'Unauthorised Action');
+        }
+        $distributor->delete();
+
+        return back()->with('message','data deleted successfully');
     }
 }

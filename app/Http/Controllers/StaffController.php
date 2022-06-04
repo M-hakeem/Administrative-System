@@ -35,4 +35,15 @@ class StaffController extends Controller
 
         return view('Staff.casual_staff_data',compact('casuals'));
     }
+
+    Public function delete(Staff $staff)
+    {
+        if($staff->user_id != auth()->id())
+        {
+            abort(403,'Unauthorised Action');
+        }
+        $staff->delete();
+
+        return back()->with('message','data deleted successfully');
+    }
 }

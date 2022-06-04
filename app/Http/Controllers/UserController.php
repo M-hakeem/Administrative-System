@@ -72,6 +72,13 @@ class UserController extends Controller
         return view('User.admin_data',compact('users'));
     }
 
+    public function delete(User $user)
+    {
+        $user->delete();
+
+        return redirect(route('admin.show'))->with('message','data deleted successfully');
+    }
+
     public function logout(Request $request)
     {
         auth()->logout();

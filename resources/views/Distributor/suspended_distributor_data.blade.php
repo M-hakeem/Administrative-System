@@ -18,7 +18,7 @@
                                             <th scope="col">Phone</th>
                                             <th scope="col">Business Name</th>
                                             <th scope="col">Business Add</th>
-                                            <th scope="col">Status</th>
+                                            <th colspan="2" scope="col">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -30,7 +30,12 @@
                                             <td>{{ $distributor->phone }}</td>
                                             <td>{{ $distributor->bname }}</td>
                                             <td>{{ $distributor->badd }}</td>
-                                            <td>{{ $distributor->status }}</td>
+                                            <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
+                                            <form method="POST" action="{{ route('distributor.delete',['distributor' => $distributor]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <td style="color: red"><button style="border:0px;" class="glyphicon glyphicon-trash fa-1x"></button></td>
+                                            </form>
                                         </tr>
                                         @empty
                                         <tr>

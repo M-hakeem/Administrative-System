@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/show',[UserController::class,'show'])->name('admin.show');
 
+    Route::delete('/admin/{user}',[UserController::class,'delete'])->name('admin.delete');
+
     Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
     Route::get('/distributor',[DistributorController::class,'register'])->name('distributor.register');
@@ -36,6 +38,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/distributor/suspended',[DistributorController::class,'suspended'])->name('distributor.suspended');
 
+    Route::delete('/distributors/{distributor}',[DistributorController::class,'delete'])->name('distributor.delete');
+
     Route::get('/staff',[StaffController::class,'staff'])->name('staff.register');
 
     Route::post('/staff/store',[StaffController::class,'store'])->name('staff.store');
@@ -43,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/staff/data',[StaffController::class,'show'])->name('staff.show');
 
     Route::get('/staff/casual',[StaffController::class,'casual'])->name('staff.casual');
+
+    Route::delete('staffs/{staff}',[StaffController::class,'delete'])->name('staff.delete');
 
 
 });
