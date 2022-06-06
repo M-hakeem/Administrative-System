@@ -3,13 +3,13 @@
         <div id="wrapper">
             <div id="page-inner">
                 <div style="overflow-x:auto;">
-                    <form method="GET" action="{{ route('admin.show') }}">
-                        <fieldset>
+                    {{-- <form method="GET" action="{{ route('admin.show') }}"> --}}
+                        {{-- <fieldset> --}}
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
+                                            <th scope="col">Role</th>
                                             <th scope="col">First Name</th>
                                             <th scope="col">last Name</th>
                                             <th scope="col">Mailing Address</th>
@@ -19,7 +19,7 @@
                                     <tbody>
                                         @forelse ($users as $user)
                                         <tr>
-                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->role }}</td>
                                             <td>{{ $user->firstname }}</td>
                                             <td>{{ $user->lastname }}</td>
                                             <td>{{ $user->email }}</td>
@@ -27,7 +27,9 @@
                                             <form method="POST" action="{{ route('admin.delete',['user' => $user]) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <td style="color: red"><button style="border:0px;" class="glyphicon glyphicon-trash fa-1x"></button></td>
+                                                <td style="color: red">
+                                                    <button style="border:0px;" class="glyphicon glyphicon-trash fa-1x" type="submit"></button>
+                                                </td>
                                             </form>
                                         </tr>
                                         @empty
@@ -38,8 +40,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </fieldset>
-                    </form>
+                        {{-- </fieldset> --}}
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>

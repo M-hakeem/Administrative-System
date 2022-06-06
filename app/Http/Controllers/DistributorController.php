@@ -26,14 +26,14 @@ class DistributorController extends Controller
 
     public function show(Distributor $distributor)
     {
-        $distributors = Distributor::whereStatus('Active')->paginate(10);
+        $distributors = Distributor::whereStatus('Active')->latest()->paginate(10);
 
         return view('Distributor.distributor_data', compact('distributors'));
     }
 
     public function suspended(Distributor $staff)
     {
-        $suspended = Distributor::whereStatus('Inactive')->paginate(10);
+        $suspended = Distributor::whereStatus('Inactive')->latest()->paginate(10);
 
         return view('Distributor.suspended_distributor_data',compact('suspended'));
     }

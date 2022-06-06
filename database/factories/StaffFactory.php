@@ -17,11 +17,13 @@ class StaffFactory extends Factory
             'fname' => $this->faker->name(),
             'lname' => $this->faker->name(),
             'gender' => 'male',
-            'department' => $this->faker->text(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->phoneNumber(),
+            'department' => 'Human Resource',
             'position' => 'web developer',
             'category' => 'permanent',
             'status' => 'Active',
-            'code' => rand(100000,999999)
+            'code' => 'HIS-' .rand(100000,999999)
 
         ];
     }

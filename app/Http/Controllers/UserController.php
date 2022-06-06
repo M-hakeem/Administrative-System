@@ -67,17 +67,13 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('User.admin_data',compact('users'));
     }
 
     public function delete(User $user)
     {
-        if($user->user_id != auth()->id())
-        {
-            return back()->with('message','You can not delete master admin');
-        }
         $user->delete();
 
         return redirect(route('admin.show'))->with('message','data deleted successfully');

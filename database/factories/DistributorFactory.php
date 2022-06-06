@@ -14,7 +14,21 @@ class DistributorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'code' => 'HID-'.rand(100000,999999),
+            'title' => $this->faker->title(),
+            'fname' => $this->faker->name(),
+            'lname' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->phoneNumber(),
+            'nationality' => $this->faker->country(),
+            'state' => $this->faker->city(),
+            'lga' => $this->faker->city(),
+            'bname' => 'dreamlabs nig ltd',
+            'badd' => $this->faker->address(),
+            'area' => 'abuja',
+            'cac' => '020304',
+            'tin' => '998877',
+            'status' => 'Active',
         ];
     }
 }

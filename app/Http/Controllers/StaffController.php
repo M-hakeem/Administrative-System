@@ -24,14 +24,14 @@ class StaffController extends Controller
 
     public function show(Staff $staff)
     {
-        $staffs = Staff::whereCategory('Permanent')->paginate(10);
+        $staffs = Staff::whereCategory('Permanent')->latest()->paginate(10);
 
         return view('Staff.staff_data',compact('staffs'));
     }
 
     public function casual(Staff $staff)
     {
-        $casuals = Staff::whereCategory('Casual')->paginate(10);
+        $casuals = Staff::whereCategory('Casual')->latest()->paginate(10);
 
         return view('Staff.casual_staff_data',compact('casuals'));
     }

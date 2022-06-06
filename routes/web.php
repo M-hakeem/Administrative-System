@@ -3,6 +3,7 @@
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
+use App\Models\Distributor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,37 +18,49 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
 
-    Route::get('/admin',[UserController::class,'admin'])->name('admin.register');
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/dashboard','dashboard')->name('dashboard');
 
-    Route::post('/admin/store',[UserController::class,'store'])->name('admin.store');
+        Route::get('/admin','admin')->name('admin.register');
 
-    Route::get('/admin/show',[UserController::class,'show'])->name('admin.show');
+        Route::post('/admin/store','store')->name('admin.store');
 
-    Route::delete('/admin/{user}',[UserController::class,'delete'])->name('admin.delete');
+        Route::get('/admin/show','show')->name('admin.show');
 
-    Route::get('/logout',[UserController::class,'logout'])->name('logout');
+        Route::delete('/admin/{user}','delete')->name('admin.delete')->middleware('superUser');
 
-    Route::get('/distributor',[DistributorController::class,'register'])->name('distributor.register');
+        Route::get('/logout','logout')->name('logout');
+    });
 
-    Route::post('/distributor/store',[DistributorController::class,'store'])->name('distributor.store');
+    Route::controller(DistributorController::class)->group(function () {
+        Route::get('/distributor','register')->name('distributor.register');
 
-    Route::get('/distributor/data',[DistributorController::class,'show'])->name('distributor.show');
+        Route::post('/distributor/store','store')->name('distributor.store');
 
-    Route::get('/distributor/suspended',[DistributorController::class,'suspended'])->name('distributor.suspended');
+        Route::get('/distributor/data','show')->name('distributor.show');
 
-    Route::delete('/distributors/{distributor}',[DistributorController::class,'delete'])->name('distributor.delete');
+        Route::get('/distributor/suspended','suspended')->name('distributor.suspended');
 
-    Route::get('/staff',[StaffController::class,'staff'])->name('staff.register');
+        Route::delete('/distributors/{distributor}','delete')->name('distributor.delete');
 
-    Route::post('/staff/store',[StaffController::class,'store'])->name('staff.store');
+        Route::delete('/distributor/suspended/{distributor}','delete')->name('distributor.delete.suspended');
+    });
 
-    Route::get('/staff/data',[StaffController::class,'show'])->name('staff.show');
+    Route::controller(StaffController::class)->group(function() {
+        Route::get('/staff','staff')->name('staff.register');
 
-    Route::get('/staff/casual',[StaffController::class,'casual'])->name('staff.casual');
+        Route::post('/staff/store','store')->name('staff.store');
 
-    Route::delete('staffs/{staff}',[StaffController::class,'delete'])->name('staff.delete');
+        Route::get('/staff/data','show')->name('staff.show');
+
+        Route::get('/staff/casual','casual')->name('staff.casual');
+
+        Route::delete('staffs/{staff}','delete')->name('staff.delete');
+
+        Route::delete('staffs/casual/{staff}','delete')->name('staff.delete.casual');
+    });
+
 });
 
 Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate')->middleware('guest');

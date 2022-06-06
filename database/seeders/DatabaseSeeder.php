@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Distributor;
 use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -22,10 +23,15 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'mohammed',
             'lastname' => 'abdulhakeem',
             'email' => 'mohammedabdulhakeem5@gmail.com',
-            'password' => Hash::make('123456')
+            'password' => Hash::make('123456'),
+            'role' => 'super',
         ]);
 
         Staff::factory(20)->create([
+            'user_id' => $user
+        ]);
+
+        Distributor::factory(20)->create([
             'user_id' => $user
         ]);
     }

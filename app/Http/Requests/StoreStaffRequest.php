@@ -26,6 +26,8 @@ class StoreStaffRequest extends FormRequest
         return [
             'fname' => ['required'],
             'lname' => ['required'],
+            'email' => ['required','unique:staff'],
+            'phone' => ['required'],
             'gender' => ['required'],
             'department' => ['required'],
             'position' => ['required'],

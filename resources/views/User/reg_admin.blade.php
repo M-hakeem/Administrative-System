@@ -50,12 +50,16 @@
                             </div>
                             <div class="row clearfix">
                                 <div class="col_full">
-                                <label>Confirm Password</label>
-                                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-                                        <input type="password" name="password_confirmation" placeholder=" Confirm Password">
+                                    <label>Role</label>
+                                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-list"></i></span>
+                                        <select id="role" name="role">
+                                        <option value="{{ old('category') }}">Role..</option>
+                                        <option value="Super">Super</option>
+                                        <option value="Sub">Sub</option>
+                                        </select>
                                     </div>
-                                    @error('password_confirmation')
-                                    <p style="color:red;font-size:14px">{{ $message }}</p>
+                                    @error('category')
+                                        <p style="color: red;font-size:14px">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col_full">

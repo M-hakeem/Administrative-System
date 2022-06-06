@@ -27,7 +27,8 @@
             <span class="fa fa-user"></span>
             <input type="email"
             name="email"
-            placeholder="Enter Email"/>
+            placeholder="Enter Email"
+            value="{{ old('email')}}"/>
         </div>
         @error('email')
             <p style="color:red">{{ $message }}</p>

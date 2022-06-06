@@ -3,13 +3,12 @@
         <div id="wrapper">
             <div id="page-inner">
                 <div style="overflow-x:auto;">
-                    <form method="GET" action="{{ route('staff.casual') }}">
-                        <fieldset>
+                    {{-- <form method="GET" action="{{ route('staff.casual') }}">
+                        <fieldset> --}}
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Code</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Department</th>
@@ -21,17 +20,19 @@
                                     <tbody>
                                         @forelse ($casuals as $casual)
                                         <tr>
-                                            <td>{{ $casual->id }}</td>
                                             <td>{{ $casual->code}}</td>
                                             <td>{{ $casual->fname." ".$casual->lname }}</td>
                                             <td>{{ $casual->department }}</td>
                                             <td>{{ $casual->position }}</td>
                                             <td>{{ $casual->category }}</td>
+                                            <td style="color: green";><p  class="glyphicon glyphicon-eye-open fa-1x"></p></td>
                                             <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
-                                            <form method="POST" action="">
+                                            <form method="POST" action="{{ route('staff.delete.casual',['staff' => $casual]) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <td style="color: red"><button style="border:0px;" class="glyphicon glyphicon-trash fa-1x"></button></td>
+                                                <td style="color: red">
+                                                    <button type="submit" style="border:0px;" class="glyphicon glyphicon-trash fa-1x">
+                                                    </button></td>
                                             </form>
                                         </tr>
                                         @empty
@@ -42,8 +43,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </fieldset>
-                    </form>
+                        {{-- </fieldset>
+                    </form> --}}
                 </div>
                 <div>{{  $casuals->links() }}</div>
             </div>
