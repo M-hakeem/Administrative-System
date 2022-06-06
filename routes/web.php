@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/distributors/{distributor}','delete')->name('distributor.delete');
 
         Route::delete('/distributor/suspended/{distributor}','delete')->name('distributor.delete.suspended');
+
+        Route::get('/distributor/data/{distributor}','view')->name('distributor-data.view');
     });
 
     Route::controller(StaffController::class)->group(function() {
@@ -59,6 +61,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('staffs/{staff}','delete')->name('staff.delete');
 
         Route::delete('staffs/casual/{staff}','delete')->name('staff.delete.casual');
+
+        Route::get('staffs/data/{staff}','view')->name('staff.data.view');
     });
 
 });

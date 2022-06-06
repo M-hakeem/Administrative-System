@@ -38,6 +38,11 @@ class DistributorController extends Controller
         return view('Distributor.suspended_distributor_data',compact('suspended'));
     }
 
+    public function view(Distributor $distributor)
+    {
+        return view('Distributor.dist-data-view',compact('distributor'));
+    }
+
     public function delete(Distributor $distributor)
     {
 

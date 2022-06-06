@@ -25,7 +25,11 @@
                                             <td>{{ $staff->department }}</td>
                                             <td>{{ $staff->position }}</td>
                                             <td>{{ $staff->category }}</td>
-                                            <td style="color: green";><p  class="glyphicon glyphicon-eye-open fa-1x"></p></td>
+                                            <td>
+                                                <a href="{{ route('staff.data.view',['staff' => $staff]) }}">
+                                                    <p  style="color: green"; class="glyphicon glyphicon-eye-open fa-1x"></p>
+                                                </a>
+                                            </td>
                                             <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
                                             <form method="POST" action="{{ route('staff.delete',['staff' => $staff]) }}">
                                                 @csrf

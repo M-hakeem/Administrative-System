@@ -28,7 +28,11 @@
                                             <td>{{ $distributor->fname." ".$distributor->lname }}</td>
                                             <td>{{ $distributor->phone }}</td>
                                             <td>{{ $distributor->bname }}</td>
-                                            <td style="color: green";><p  class="glyphicon glyphicon-eye-open fa-1x"></p></td>
+                                            <td>
+                                                <a href="{{ route('distributor-data.view',['distributor' => $distributor]) }}">
+                                                    <p  style="color: green"; class="glyphicon glyphicon-eye-open fa-1x"></p>
+                                                </a>
+                                            </td>
                                             <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
                                             <form method="POST" action="{{ route('distributor.delete.suspended',['distributor' => $distributor]) }}">
                                                 @csrf

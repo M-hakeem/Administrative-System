@@ -36,6 +36,11 @@ class StaffController extends Controller
         return view('Staff.casual_staff_data',compact('casuals'));
     }
 
+    public function view(Staff $staff)
+    {
+        return view('Staff.staff_data_view',compact('staff'));
+    }
+
     Public function delete(Staff $staff)
     {
         if($staff->user_id != auth()->id())

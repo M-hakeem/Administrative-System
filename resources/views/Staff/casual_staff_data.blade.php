@@ -25,7 +25,11 @@
                                             <td>{{ $casual->department }}</td>
                                             <td>{{ $casual->position }}</td>
                                             <td>{{ $casual->category }}</td>
-                                            <td style="color: green";><p  class="glyphicon glyphicon-eye-open fa-1x"></p></td>
+                                            <td>
+                                                <a href="{{ route('staff.data.view',['staff'=>$casual]) }}">
+                                                    <p  style="color: green"; class="glyphicon glyphicon-eye-open fa-1x"></p>
+                                                </a>
+                                            </td>
                                             <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
                                             <form method="POST" action="{{ route('staff.delete.casual',['staff' => $casual]) }}">
                                                 @csrf
