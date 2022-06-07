@@ -24,6 +24,11 @@
                                             <td>{{ $user->lastname }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
+                                                <a href="{{ route('admin.view',['user' => $user]) }}">
+                                                    <p  style="color: green"; class="glyphicon glyphicon-eye-open fa-1x"></p>
+                                                </a>
+                                            </td>
+                                            <td>
                                                 <a href="{{ route('admin.edit',['user' => $user]) }}">
                                                     <p  style="color: blue"; class="glyphicon glyphicon-edit fa-1x"></p>
                                                 </a>

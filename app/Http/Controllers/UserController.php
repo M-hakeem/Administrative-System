@@ -75,6 +75,11 @@ class UserController extends Controller
         return view('User.admin_data',compact('users'));
     }
 
+    public function view(User $user)
+    {
+        return view('User.admin_data_view',compact('user'));
+    }
+
     public function edit(User $user)
     {
         return view('User.admin_data_update',compact('user'));

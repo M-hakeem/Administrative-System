@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/admin/show','show')->name('admin.show')->middleware('superUser');
 
+        Route::get('/admin/data/{user}','view')->name('admin.view');
+
         Route::get('/admin/edit/{user}','edit')->name('admin.edit');
 
         Route::put('/admin/update/{user}','update')->name('admin.update');
