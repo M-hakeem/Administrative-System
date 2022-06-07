@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStaffRequest;
+use App\Http\Requests\UpdateStaffRequest;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,23 @@ class StaffController extends Controller
     public function view(Staff $staff)
     {
         return view('Staff.staff_data_view',compact('staff'));
+    }
+
+    public function edit(Staff $staff)
+    {
+        return view('Staff.staff_data_update',compact('staff'));
+    }
+
+    public function update(UpdateStaffRequest $request, Staff $staff)
+    {
+        if ($staff->user_id != auth()->id())
+        {
+            abort(403,'Unauthorized Action');
+        }
+
+        $staff->update($request->validated());
+
+        return back()->with('message','data updated successfully');
     }
 
     Public function delete(Staff $staff)

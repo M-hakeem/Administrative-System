@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class SuperUser
 {
@@ -16,8 +17,9 @@ class SuperUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user->role != 'sub') {
-            abort(403, 'Unauthorised');
+        if ($request->user()->role != 'Super') {
+
+            return redirect('/dashboard')->with('message','Unauthorized');
         } else{
             return $next($request);
         }

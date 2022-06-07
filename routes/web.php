@@ -22,13 +22,17 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/dashboard','dashboard')->name('dashboard');
 
-        Route::get('/admin','admin')->name('admin.register');
+        Route::get('/admin','admin')->name('admin.register')->middleware('superUser');
 
         Route::post('/admin/store','store')->name('admin.store');
 
-        Route::get('/admin/show','show')->name('admin.show');
+        Route::get('/admin/show','show')->name('admin.show')->middleware('superUser');
 
-        Route::delete('/admin/{user}','delete')->name('admin.delete')->middleware('superUser');
+        Route::get('/admin/edit/{user}','edit')->name('admin.edit');
+
+        Route::put('/admin/update/{user}','update')->name('admin.update');
+
+        Route::delete('/admin/{user}','delete')->name('admin.delete');
 
         Route::get('/logout','logout')->name('logout');
     });
@@ -42,11 +46,16 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/distributor/suspended','suspended')->name('distributor.suspended');
 
+        Route::get('/distributor/data/{distributor}','view')->name('distributor-data.view');
+
+        Route::get('/distributor/edit/{distributor}','edit')->name('distributor.edit');
+
+        Route::put('/distributor/update/{distributor}','update')->name('distributor.update');
+
         Route::delete('/distributors/{distributor}','delete')->name('distributor.delete');
 
         Route::delete('/distributor/suspended/{distributor}','delete')->name('distributor.delete.suspended');
 
-        Route::get('/distributor/data/{distributor}','view')->name('distributor-data.view');
     });
 
     Route::controller(StaffController::class)->group(function() {
@@ -58,11 +67,16 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/staff/casual','casual')->name('staff.casual');
 
-        Route::delete('staffs/{staff}','delete')->name('staff.delete');
+        Route::get('staff/data/{staff}','view')->name('staff.data.view');
 
-        Route::delete('staffs/casual/{staff}','delete')->name('staff.delete.casual');
+        Route::get('staff/edit/{staff}','edit')->name('staff.edit');
 
-        Route::get('staffs/data/{staff}','view')->name('staff.data.view');
+        Route::put('staff/update/{staff}','update')->name('staff.update');
+
+        Route::delete('staff/{staff}','delete')->name('staff.delete');
+
+        Route::delete('staff/casual/{staff}','delete')->name('staff.delete.casual');
+
     });
 
 });

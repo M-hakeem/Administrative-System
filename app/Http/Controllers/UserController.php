@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
 use App\Models\Distributor;
+use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,11 +67,28 @@ class UserController extends Controller
         return back()->with('message','data added successfully');
     }
 
+
     public function show(User $user)
     {
-        $users = User::paginate(10);
+        $users = User::whereRole('sub')->paginate(10);
 
         return view('User.admin_data',compact('users'));
+    }
+
+    public function edit(User $user)
+    {
+        return view('User.admin_data_update',compact('user'));
+    }
+
+    public function update(UpdateAdminRequest $request,User $user)
+    {
+        $data = $request->validated();
+
+        $data['password'] = Hash::make($request['password']);
+
+        $user->update($data);
+
+        return back()->with('message','data updated successfully');
     }
 
     public function delete(User $user)

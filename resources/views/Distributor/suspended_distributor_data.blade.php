@@ -33,7 +33,11 @@
                                                     <p  style="color: green"; class="glyphicon glyphicon-eye-open fa-1x"></p>
                                                 </a>
                                             </td>
-                                            <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
+                                            <td>
+                                                <a href="{{ route('distributor.edit',['distributor' => $distributor]) }}">
+                                                    <p  style="color: blue"; class="glyphicon glyphicon-edit fa-1x"></p>
+                                                </a>
+                                            </td>
                                             <form method="POST" action="{{ route('distributor.delete.suspended',['distributor' => $distributor]) }}">
                                                 @csrf
                                                 @method('DELETE')

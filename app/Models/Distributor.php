@@ -10,7 +10,7 @@ class Distributor extends Model
     use HasFactory;
 
     protected $fillable = ['code','title','fname','lname','email','phone','phone2','nationality',
-    'state','lga','bname','badd','area','cac','tin','user_id'];
+    'state','lga','bname','badd','area','cac','tin','status','user_id'];
 
     // protected $guarded = ['id', 'updated_at', 'created_at'];
 

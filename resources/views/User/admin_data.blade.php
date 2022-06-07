@@ -23,7 +23,11 @@
                                             <td>{{ $user->firstname }}</td>
                                             <td>{{ $user->lastname }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td style="color: blue";><p  class="glyphicon glyphicon-edit fa-1x"></p></td>
+                                            <td>
+                                                <a href="{{ route('admin.edit',['user' => $user]) }}">
+                                                    <p  style="color: blue"; class="glyphicon glyphicon-edit fa-1x"></p>
+                                                </a>
+                                            </td>
                                             <form method="POST" action="{{ route('admin.delete',['user' => $user]) }}">
                                                 @csrf
                                                 @method('DELETE')

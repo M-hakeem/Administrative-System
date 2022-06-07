@@ -6,7 +6,9 @@
                     <table class="table-view">
                         <thead  class="thead">
                             <tr>
-                                <th class="th" colspan="2">{{ $distributor->bname}} <sub class="sub">Code: {{ $distributor->code }}</sub></th>
+                                <th class="th" colspan="2">{{ $distributor->bname}}
+                                    <sub class="sub">Code: {{ $distributor->code }} </sub>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>

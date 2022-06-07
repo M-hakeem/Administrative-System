@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDistributorRequest;
+use App\Http\Requests\UpdateDistributorRequest;
 use App\Models\Distributor;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,6 +43,23 @@ class DistributorController extends Controller
     public function view(Distributor $distributor)
     {
         return view('Distributor.dist-data-view',compact('distributor'));
+    }
+
+    public function edit(Distributor $distributor)
+    {
+        return view('Distributor.distributor_update',compact('distributor'));
+    }
+
+    public function update(UpdateDistributorRequest $request, Distributor $distributor)
+    {
+        if($distributor->user_id != auth()->id())
+        {
+            abort(403,'Unauthorized Action');
+        }
+
+        $distributor->update($request->validated());
+
+        return back()->with('message','data updated successfully');
     }
 
     public function delete(Distributor $distributor)

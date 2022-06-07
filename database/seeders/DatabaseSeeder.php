@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'abdulhakeem',
             'email' => 'mohammedabdulhakeem5@gmail.com',
             'password' => Hash::make('123456'),
-            'role' => 'super',
+            'role' => 'Super',
         ]);
 
         Staff::factory(20)->create([
