@@ -93,7 +93,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return back()->with('message','data updated successfully');
+        return redirect(route('admin.show'))->with('message','data updated successfully');
     }
 
     public function delete(User $user)
