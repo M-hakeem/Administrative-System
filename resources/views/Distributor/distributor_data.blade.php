@@ -4,6 +4,10 @@
         <div id="page-inner">
             <div style="overflow-x:auto;">
                 <div class="table-responsive">
+                    <form action="">
+                        <button type="submit" class="btn">Search</button>
+                        <input type="text" class="search" placeholder="Search Distributor Data..." name="search">
+                    </form>
                     <table class="table">
                         <thead>
                             <tr>
@@ -12,7 +16,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Business Name</th>
-                                <th colspan="2" scope="col">&nbsp;</th>
+                                <th colspan="3" scope="col">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>

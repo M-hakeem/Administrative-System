@@ -28,8 +28,8 @@
             <li class="@if(Route::currentRouteName() == 'distributor.suspended') active-link @endif">
                 <a href="{{ route('distributor.suspended') }}"><i class="fa fa-ban "></i>Suspended Distributors</a>
             </li>
-            <li>
-                <a href="profile.php"><i class="fa fa-user "></i>Profile</a>
+            <li class="@if(Route::currentRouteName() == 'admin.profile') active-link @endif">
+                <a href="{{ route('admin.profile') }}"><i class="fa fa-user "></i>Profile</a>
             </li>
             <li>
                 <a href="{{ route('logout') }}"><i class="fa fa-sign-out "></i>Logout</a>

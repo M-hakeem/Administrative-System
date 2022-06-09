@@ -13,7 +13,7 @@
                                             <th scope="col">First Name</th>
                                             <th scope="col">last Name</th>
                                             <th scope="col">Mailing Address</th>
-                                            <th colspan="2" scope="col">&nbsp;</th>
+                                            <th colspan="3" scope="col">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>

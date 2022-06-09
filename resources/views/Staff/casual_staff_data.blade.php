@@ -6,6 +6,10 @@
                     {{-- <form method="GET" action="{{ route('staff.casual') }}">
                         <fieldset> --}}
                             <div class="table-responsive">
+                                <form action="">
+                                    <button type="submit" class="btn">Search</button>
+                                    <input type="text" class="search" placeholder="Search Staff Data..." name="search">
+                                </form>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -14,7 +18,7 @@
                                             <th scope="col">Department</th>
                                             <th scope="col">Position</th>
                                             <th scope="col">Category</th>
-                                            <th colspan="2" scope="col">&nbsp;</th>
+                                            <th colspan="3" scope="col">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>

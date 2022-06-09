@@ -9,6 +9,10 @@
                             <input type="text" class="search" placeholder="Search Data" name="valuetosearch">
                             &nbsp --}}
                             <div class="table-responsive">
+                                <form action="">
+                                    <button type="submit" class="btn">Search</button>
+                                    <input type="text" class="search" placeholder="Search Distributor Data..." name="search">
+                                </form>
                                 <table class="table">
                                     <thead>
                                         <tr>

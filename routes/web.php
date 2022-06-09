@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
 
         Route::delete('/admin/{user}','delete')->name('admin.delete');
 
+        Route::get('/admin/profile','userprofile')->name('admin.profile');
+
         Route::get('/logout','logout')->name('logout');
     });
 

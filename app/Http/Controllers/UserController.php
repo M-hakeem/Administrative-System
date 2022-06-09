@@ -103,6 +103,13 @@ class UserController extends Controller
         return redirect(route('admin.show'))->with('message','data deleted successfully');
     }
 
+    public function userprofile(User $user)
+    {
+        $user = auth()->user();
+        
+        return view('User.admin_profile',compact('user'));
+    }
+
     public function logout(Request $request)
     {
         auth()->logout();
