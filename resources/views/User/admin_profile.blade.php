@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Reset Password</p>
-                                        <h5 class="text-muted f-w-400"><a href=""><img src='{{ asset('icons/reset.svg') }}'/></h5>
+                                        <h5 class="text-muted f-w-400"><a href="{{ route('admin.reset') }}"><img src='{{ asset('icons/reset.svg') }}'/></h5>
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Social Media</p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\Distributor;
 use App\Models\Staff;
 use App\Models\User;
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         return view('User.index');
     }
@@ -26,13 +28,13 @@ class UserController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        if(auth()->attempt($loginForm)){
+        if (auth()->attempt($loginForm)) {
             $request->session()->regenerate();
 
-            return redirect(route('dashboard'))->with('message','You are logged In!');
+            return redirect(route('dashboard'))->with('message', 'You are logged In!');
         }
 
-        return back()->with('message','Invalid Credentials!');
+        return back()->with('message', 'Invalid Credentials!');
     }
 
     public function dashboard()
@@ -48,7 +50,7 @@ class UserController extends Controller
 
         // $distributor_count = Distributor::where('id','')->count();
 
-        return view('dashboard',compact('item'));
+        return view('dashboard', compact('item'));
     }
 
     public function admin()
@@ -64,7 +66,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return back()->with('message','data added successfully');
+        return back()->with('message', 'data added successfully');
     }
 
 
@@ -72,20 +74,20 @@ class UserController extends Controller
     {
         $users = User::whereRole('sub')->paginate(10);
 
-        return view('User.admin_data',compact('users'));
+        return view('User.admin_data', compact('users'));
     }
 
     public function view(User $user)
     {
-        return view('User.admin_data_view',compact('user'));
+        return view('User.admin_data_view', compact('user'));
     }
 
     public function edit(User $user)
     {
-        return view('User.admin_data_update',compact('user'));
+        return view('User.admin_data_update', compact('user'));
     }
 
-    public function update(UpdateAdminRequest $request,User $user)
+    public function update(UpdateAdminRequest $request, User $user)
     {
         $data = $request->validated();
 
@@ -93,21 +95,42 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect(route('admin.show'))->with('message','data updated successfully');
+        return redirect(route('admin.show'))->with('message', 'data updated successfully');
     }
 
     public function delete(User $user)
     {
         $user->delete();
 
-        return redirect(route('admin.show'))->with('message','data deleted successfully');
+        return redirect(route('admin.show'))->with('message', 'data deleted successfully');
     }
 
     public function userprofile(User $user)
     {
         $user = auth()->user();
-        
-        return view('User.admin_profile',compact('user'));
+
+        return view('User.admin_profile', compact('user'));
+    }
+
+    public function reset(User $user)
+    {
+        return view('User.admin_reset_password', compact('user'));
+    }
+
+    public function resetPassword(UpdatePasswordRequest $request)
+    {
+        $data = $request->validated();
+
+        if (Hash::check($data['currentPassword'], auth()->user()->password))
+        {
+            $data['password'] = Hash::make($request['password']);
+
+            auth()->user()->update($data);
+
+            return redirect(route('admin.profile'))->with('message', 'password changed successfully');
+        }
+
+        return back()->with('message', 'Incorrect User Password');
     }
 
     public function logout(Request $request)
@@ -117,6 +140,6 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect(route('login'))->with('message','you have been logged out!');
+        return redirect(route('login'))->with('message', 'you have been logged out!');
     }
 }

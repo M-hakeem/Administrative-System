@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/admin/profile','userprofile')->name('admin.profile');
 
+        Route::get('/admin/profile/reset','reset')->name('admin.reset');
+
+        Route::put('/admin/profile/password','resetPassword')->name('admin.resetPassword');
+
         Route::get('/logout','logout')->name('logout');
     });
 
