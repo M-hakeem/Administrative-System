@@ -7,7 +7,7 @@
                         @csrf
                         @method('PUT')
                         <fieldset>
-                            <legend>Update Profile</legend>
+                            <legend>Update Profile: {{ auth()->user()->firstname." ".auth()->user()->lastname }}</legend>
                             <div class="row clearfix">
                                 <div class="col_full">
                                     <label>Password Reset</label>
