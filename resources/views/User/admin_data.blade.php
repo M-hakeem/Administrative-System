@@ -9,6 +9,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th scope="col">#</th>
                                             <th scope="col">Role</th>
                                             <th scope="col">First Name</th>
                                             <th scope="col">last Name</th>
@@ -17,8 +18,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($users as $user)
+                                        
+                                        @forelse ($users as $key => $user)
                                         <tr>
+                                            <td>{{ ++$key }}
                                             <td>{{ $user->role }}</td>
                                             <td>{{ $user->firstname }}</td>
                                             <td>{{ $user->lastname }}</td>

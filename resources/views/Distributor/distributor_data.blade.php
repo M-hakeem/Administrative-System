@@ -11,6 +11,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th scope="col">#</th>
                                 <th scope="col">Code</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Name</th>
@@ -20,8 +21,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($distributors as $distributor)
+                            @forelse ($distributors as $key => $distributor)
                             <tr>
+                                <td>{{ ++$key}}</td>
                                 <td>{{ $distributor->code}}</td>
                                 <td>{{ $distributor->title}}</td>
                                 <td>{{ $distributor->fname." ".$distributor->lname }}</td>

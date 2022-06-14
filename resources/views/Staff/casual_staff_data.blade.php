@@ -13,6 +13,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th scope="col">#</th>
                                             <th scope="col">Code</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Department</th>
@@ -22,8 +23,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($casuals as $casual)
+                                        @forelse ($casuals as $key=>$casual)
                                         <tr>
+                                            <td>{{ ++$key}}</td>
                                             <td>{{ $casual->code}}</td>
                                             <td>{{ $casual->fname." ".$casual->lname }}</td>
                                             <td>{{ $casual->department }}</td>

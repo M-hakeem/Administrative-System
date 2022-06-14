@@ -3,6 +3,7 @@
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Controller;
 use App\Models\Distributor;
 use Illuminate\Support\Facades\Route;
 
@@ -92,6 +93,5 @@ Route::middleware('auth')->group(function () {
 Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate')->middleware('guest');
 
 Route::get('/',[UserController::class,'index'])->name('login');
-
 
 
