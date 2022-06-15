@@ -132,7 +132,6 @@
     /*==============================================
         MEDIA QUERIES
         =============================================*/
-
      @media(min-width:768px) {
          #page-wrapper{
             margin: 0 0 0 260px;
@@ -147,6 +146,10 @@
             position: absolute;
             width: 260px;
 
+        }
+
+        .pdf{
+            width:40px;
         }
 
 

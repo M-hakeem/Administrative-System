@@ -18,10 +18,18 @@ class DistributorController extends Controller
 
     public function store(StoreDistributorRequest $request)
     {
+
+        $data = $request->validated();
+
+        if($request->hasFile('cac'))
+        {
+            $data['cac'] = $request->file('cac')->store('files','public');
+        }
+
         // Generate random string
         $code = 'HID-'.rand(100000, 999999);
 
-        auth()->user()->distributors()->create($request->validated() + ['code' => $code]);
+        auth()->user()->distributors()->create($data + ['code' => $code]);
 
         return back()->with('message', 'data added successfully');
     }
@@ -59,7 +67,14 @@ class DistributorController extends Controller
             abort(403,'Unauthorized Action');
         }
 
-        $distributor->update($request->validated());
+        $data = $request->validated();
+
+        if($request->hasFile('cac'))
+        {
+            $data['cac'] = $request->file('cac')->store('files','public');
+        }
+
+        $distributor->update($data);
 
         return back()->with('message','data updated successfully');
     }

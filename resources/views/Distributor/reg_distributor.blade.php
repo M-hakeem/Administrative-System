@@ -3,7 +3,7 @@
     <div id="wrapper">
         <div id="page-inner">
             <div class="form_wrapper">
-                <form method="POST" action="{{ route('distributor.store') }} ">
+                <form method="POST" action="{{ route('distributor.store') }}" enctype="multipart/form-data">
                     @csrf
                     <fieldset>
                         <legend>Distributor Form</legend>
@@ -157,14 +157,9 @@
                             @enderror
                         </div>
                         <div class="row clearfix">
-                        <!--       <div class="col_half">
-                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-file"></i></span>
-                                <input type="file" name="myfile" placeholder="Means of Identification" required/>
-                            </div>
-                            </div> -->
                             <div class="col_half">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-file"></i></span>
-                            <input type="text" id="cac" name="cac" placeholder="CAC Number" value="{{ old('cac') }}"/>
+                                <input type="file" name="cac" placeholder="Means of Identification"/>
                             </div>
                             @error('cac')
                             <p style="color:red;font-size:14px">{{ $message }}</p>

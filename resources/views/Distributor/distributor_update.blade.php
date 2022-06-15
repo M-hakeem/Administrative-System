@@ -4,11 +4,11 @@
             <div id="page-inner">
                 <div class="form_wrapper">
                     <div class="form_container">
-                        <form method="POST" action="{{ route('distributor.update',['distributor' => $distributor]) }} ">
+                        <form method="POST" action="{{ route('distributor.update',['distributor' => $distributor]) }} " enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <fieldset>
-                                <legend>Update Distributor: {{ $distributor->fname." ".$distributor->lname }}</legend>
+                                <legend>Update Distributor: {{ $distributor->fname." ".$distributor->lname }} ({{ $distributor->code }})</legend>
                                 <div class="row clearfix">
                                     <div class="col_half">
                                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
@@ -159,14 +159,17 @@
                                     @enderror
                                 </div>
                                 <div class="row clearfix">
-                                    {{-- <div class="col_half">
-                                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-file"></i></span>
-                                        <input type="file" name="myfile" placeholder="Means of Identification" required/>
-                                    </div>
-                                    </div> --}}
                                     <div class="col_half">
-                                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-key"></i></span>
-                                    <input type="text" id="code" name="code" disabled value="{{ $distributor->code }}"/>
+                                    <div class="input_field">
+                                        <span>
+                                            @if ($distributor->cac)
+                                            <a href="{{asset('storage/'.$distributor->cac)}}"><img src="{{ asset('images/pdf.png') }}" class="pdf" />
+                                            @else
+                                            <a href="#"><img src="{{ asset('images/empty.png') }}" class="pdf"> </a>
+                                            @endif
+                                            </a>
+                                        </span>
+                                    <input type="file" id="cac" name="cac"/>
                                     </div>
                                     @error('cac')
                                     <p style="color:red;font-size:14px">{{ $message }}</p>

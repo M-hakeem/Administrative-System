@@ -38,6 +38,7 @@ class UpdateDistributorRequest extends FormRequest
             'bname' => ['required'],
             'badd' => ['required'],
             'area' => ['required'],
+            'cac' => ['nullable','file','mimes:jpg,jpeg,png,pdf'],
             'status' => ['required']
         ];
     }

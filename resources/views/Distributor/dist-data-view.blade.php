@@ -29,7 +29,13 @@
                                 <td>Area of Distributorship: {{ $distributor->area }}</td>
                             </tr>
                             <tr>
-                                <td>CAC Number: {{ $distributor->cac }}</td>
+                                <td> CAC Certificate:
+                                @if ($distributor->cac)
+                                <a href="{{asset('storage/'.$distributor->cac)}}"><img src="{{ asset('images/pdf.png')}}" class="pdf"/> </a>
+                                @else
+                                <a href="#"><img src="{{ asset('images/empty.png') }}" class="pdf"> </a>
+                                @endif
+                                </td>
                                 <td>TIN Number: {{ $distributor->tin }}</td>
                             </tr>
                         </tbody>

@@ -29,7 +29,7 @@ class CreateDistributorsTable extends Migration
             $table->string('bname');
             $table->string('badd');
             $table->string('area');
-            $table->string('cac');
+            $table->string('cac')->nullable();
             $table->string('tin');
             $table->string('status')->default('Active');
             $table->foreignIdFor(User::class);

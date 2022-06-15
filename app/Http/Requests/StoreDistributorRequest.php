@@ -36,7 +36,7 @@ class StoreDistributorRequest extends FormRequest
             'bname' => ['required','unique:distributors'],
             'badd' => ['required'],
             'area' => ['required'],
-            'cac' => ['required'],
+            'cac' => ['nullable','file','mimes:jpg,jpeg,png,pdf'],
             'tin' => ['required']
         ];
     }

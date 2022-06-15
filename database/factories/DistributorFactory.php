@@ -26,7 +26,6 @@ class DistributorFactory extends Factory
             'bname' => 'dreamlabs nig ltd',
             'badd' => $this->faker->address(),
             'area' => 'abuja',
-            'cac' => '020304',
             'tin' => '998877',
             'status' => 'Active',
         ];
