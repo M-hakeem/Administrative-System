@@ -92,6 +92,8 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/authenticate',[UserController::class,'authenticate'])->name('authenticate')->middleware('guest');
 
+Route::get('/status/{email}',[UserController::class,'updateStatus']);
+
 Route::get('/',[UserController::class,'index'])->name('login');
 
 

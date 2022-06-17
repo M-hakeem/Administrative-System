@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Staff;
+use App\Models\Distributor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use App\Http\Requests\UpdatePasswordRequest;
-use App\Models\Distributor;
-use App\Models\Staff;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use App\Mail\accountVerification;
 
 class UserController extends Controller
 {
@@ -25,13 +27,19 @@ class UserController extends Controller
     {
         $loginForm = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ]);
 
         if (auth()->attempt($loginForm)) {
             $request->session()->regenerate();
-
-            return redirect(route('dashboard'))->with('message', 'You are logged In!');
+            if (auth()->user()->status == 1)
+            {
+                return redirect(route('dashboard'))->with('message', 'You are logged In!');
+            }
+            else{
+                auth()->logout();
+                return back()->with('message', 'You are yet to activate your account!');
+            }
         }
 
         return back()->with('message', 'Invalid Credentials!');
@@ -65,6 +73,7 @@ class UserController extends Controller
         $data['password'] = Hash::make($request['password']);
 
         User::create($data);
+        Mail::to($data['email'])->send(new accountVerification($data['firstname'],$data['lastname'],$data['email']));
 
         return back()->with('message', 'data added successfully');
     }
@@ -131,6 +140,13 @@ class UserController extends Controller
         }
 
         return back()->with('message', 'Incorrect User Password');
+    }
+
+    public function updateStatus($email)
+    {
+        DB::table('users')->whereEmail($email)->update(['status'=> 1]);
+
+        return back()->with('message','Account Updated Successfully');
     }
 
     public function logout(Request $request)
