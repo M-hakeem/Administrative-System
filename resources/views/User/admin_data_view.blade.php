@@ -6,13 +6,19 @@
                     <table class="table-view">
                         <thead  class="thead">
                             <tr>
-                                <th class="th" colspan="2">{{ $user->firstname." ". $user->lastname}}</th>
+                                <th class="th" colspan="2">{{ $user->firstname." ". $user->lastname}}
+                                    @if ($user->status == 'Active')
+                                        <sub class="sub">Status: <span style="color:blue;">{{ $user->status }}</span></sub>
+                                    @elseif($user->status == 'Deactivated')
+                                        <sub class="sub">Status:<span  style="color:red;"> {{ $user->status }}</span></sub>
+                                    @endif
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>FirstName: {{ $user->firstname }}</td>
-                                <td>LastName: {{ $user->lastname }}</td>
+                                <td>First Name: {{ $user->firstname }}</td>
+                                <td>Last Name: {{ $user->lastname }}</td>
                             </tr>
                             <tr>
                                 <td>Email: {{ $user->email }}</td>

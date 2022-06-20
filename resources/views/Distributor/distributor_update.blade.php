@@ -68,8 +68,11 @@
                                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-globe"></i></span>
                                     <select id="nationality" name="nationality">
                                     <option value="{{ $distributor->nationality }}">{{ $distributor->nationality }}</option>
-                                    <option value="Nigerian">Nigerian</option>
+                                    @if ($distributor->nationality == 'Nigerian')
                                         <option value="Other">Other</option>
+                                    @else
+                                        <option value="Nigerian">Nigerian</option>
+                                    @endif
                                     </select>
                                     </div>
                                     @error('nationality')
@@ -179,8 +182,11 @@
                                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-ban"></i></span>
                                         <select id="status" name="status">
                                         <option value="{{ $distributor->status }}">{{ $distributor->status  }}</option>
-                                        <option value="Active">Active</option>
-                                        <option value="Inactive">Inactive</option>
+                                        @if ($distributor->status == 'Active')
+                                            <option value="Inactive">Inactive</option>
+                                        @else
+                                            <option value="Active">Active</option>
+                                        @endif
                                         </select>
                                     </div>
                                     </div>

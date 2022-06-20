@@ -6,7 +6,7 @@
                 <form method="POST" action="{{ route('admin.store') }}">
                     @csrf
                     <fieldset>
-                        <legend>Register</legend>
+                        <legend>Register Admin</legend>
                         <div class="row clearfix">
                             <div class="col_full">
                                     <label>First Name</label>
@@ -52,12 +52,11 @@
                                 <label>Role</label>
                                 <div class="input_field"> <span><i aria-hidden="true" class="fa fa-list"></i></span>
                                     <select id="role" name="role">
-                                    <option value="{{ old('category') }}">Role..</option>
-                                    <option value="Super">Super</option>
+                                    <option value="{{ old('role') }}">Role..</option>
                                     <option value="Sub">Sub</option>
                                     </select>
                                 </div>
-                                @error('category')
+                                @error('role')
                                     <p style="color: red;font-size:14px">{{ $message }}</p>
                                 @enderror
                             </div>

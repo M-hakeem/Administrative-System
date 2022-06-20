@@ -16,12 +16,12 @@ class StaffFactory extends Factory
         return [
             'fname' => $this->faker->name(),
             'lname' => $this->faker->name(),
-            'gender' => 'male',
+            'gender' => 'Male',
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
             'department' => 'Human Resource',
             'position' => 'web developer',
-            'category' => 'permanent',
+            'category' => 'Permanent',
             'status' => 'Active',
             'code' => 'HIS-' .rand(100000,999999)
 

@@ -10,6 +10,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
+                                            <th scope="col">Status</th>
                                             <th scope="col">Role</th>
                                             <th scope="col">First Name</th>
                                             <th scope="col">last Name</th>
@@ -18,10 +19,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+
                                         @forelse ($users as $key => $user)
                                         <tr>
                                             <td>{{ ++$key }}
+                                            @if ($user->status == 'Active')
+                                                <td style="color: blue; font-weight:bolder;">{{ $user->status }}</td>
+                                            @else
+                                                <td style="color: red;font-weight:bolder;">{{ $user->status }}</td>
+                                            @endif
                                             <td>{{ $user->role }}</td>
                                             <td>{{ $user->firstname }}</td>
                                             <td>{{ $user->lastname }}</td>

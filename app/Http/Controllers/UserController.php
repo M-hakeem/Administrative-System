@@ -32,11 +32,12 @@ class UserController extends Controller
 
         if (auth()->attempt($loginForm)) {
             $request->session()->regenerate();
-            if (auth()->user()->status == 1)
-            {
+            if (auth()->user()->status == 'Active') {
                 return redirect(route('dashboard'))->with('message', 'You are logged In!');
-            }
-            else{
+            } elseif (auth()->user()->status == 'Deactivated') {
+                auth()->logout();
+                return back()->with('message', 'Your account is deactivated');
+            } else {
                 auth()->logout();
                 return back()->with('message', 'You are yet to activate your account!');
             }
@@ -73,7 +74,12 @@ class UserController extends Controller
         $data['password'] = Hash::make($request['password']);
 
         User::create($data);
-        Mail::to($data['email'])->send(new accountVerification($data['firstname'],$data['lastname'],$data['email']));
+        Mail::to($data['email'])->send(new accountVerification(
+            $data['firstname'],
+            $data['lastname'],
+            $data['email'],
+            $request['password']
+        ));
 
         return back()->with('message', 'data added successfully');
     }
@@ -82,6 +88,12 @@ class UserController extends Controller
     public function show(User $user)
     {
         $users = User::whereRole('sub')->paginate(10);
+
+        $users = $users->filter(function ($user) {
+            if ($user->status == 'Active' || $user->status == 'Deactivated') {
+                return $user;
+            }
+        });
 
         return view('User.admin_data', compact('users'));
     }
@@ -100,11 +112,10 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        $data['password'] = Hash::make($request['password']);
-
         $user->update($data);
 
-        return redirect(route('admin.show'))->with('message', 'data updated successfully');
+        return redirect(route('admin.show'))->with('message', 'data updated
+        successfully');
     }
 
     public function delete(User $user)
@@ -130,8 +141,7 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        if (Hash::check($data['currentPassword'], auth()->user()->password))
-        {
+        if (Hash::check($data['currentPassword'], auth()->user()->password)) {
             $data['password'] = Hash::make($request['password']);
 
             auth()->user()->update($data);
@@ -144,9 +154,11 @@ class UserController extends Controller
 
     public function updateStatus($email)
     {
-        DB::table('users')->whereEmail($email)->update(['status'=> 1]);
+        DB::table('users')->whereEmail($email)->update(['status' => 'Active']);
 
-        return back()->with('message','Account Updated Successfully');
+        auth()->logout();
+
+        return redirect(route('login'))->with('message', 'Account Updated Successfully');
     }
 
     public function logout(Request $request)

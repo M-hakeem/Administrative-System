@@ -51,10 +51,10 @@ class StaffController extends Controller
 
     public function update(UpdateStaffRequest $request, Staff $staff)
     {
-        if ($staff->user_id != auth()->id())
-        {
-            abort(403,'Unauthorized Action');
-        }
+        // if ($staff->user_id != auth()->id())
+        // {
+        //     abort(403,'Unauthorized Action');
+        // }
 
         $staff->update($request->validated());
 

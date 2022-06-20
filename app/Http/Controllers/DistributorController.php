@@ -57,10 +57,7 @@ class DistributorController extends Controller
 
     public function edit(Distributor $distributor)
     {
-        if($distributor->user_id != auth()->id())
-        {
-            return back()->with('message','Unauthorised Action');
-        }
+
         return view('Distributor.distributor_update',compact('distributor'));
     }
 

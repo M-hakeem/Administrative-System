@@ -30,8 +30,11 @@
                                         <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
                                             <select id="gender" name="gender">
                                                 <option value="{{ $staff->gender }}">{{ $staff->gender }}</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
+                                                @if ($staff->gender == 'Male')
+                                                    <option value="Female">Female</option>
+                                                @else
+                                                    <option value="Male">Male</option>
+                                                @endif
                                             </select>
                                         </div>
                                         @error('gender')
@@ -87,8 +90,11 @@
                                         <div class="input_field"> <span><i aria-hidden="true" class="fa fa-list"></i></span>
                                             <select id="category" name="category">
                                             <option value="{{ $staff->category }}">{{ $staff->category }}</option>
-                                            <option value="Permanent">Permanent</option>
-                                            <option value="Casual">Casual</option>
+                                            @if ( $staff->category == 'Permanent')
+                                                <option value="Casual">Casual</option>
+                                            @else
+                                                <option value="Permanent">Permanent</option>
+                                            @endif
                                             </select>
                                         </div>
                                         @error('category')

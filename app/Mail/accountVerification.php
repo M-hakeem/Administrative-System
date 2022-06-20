@@ -14,18 +14,20 @@ class accountVerification extends Mailable
     protected $fname;
     protected $lname;
     protected $email;
+    protected $password;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($fname,$lname,$email)
+    public function __construct($fname,$lname,$email,$password)
     {
         //
         $this->fname = $fname;
         $this->lname = $lname;
         $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -40,6 +42,7 @@ class accountVerification extends Mailable
         return $this->view('Mails.User_Update')->with([
             'fn' => $this->fname,
             'ln' => $this->lname,
+            'pwd' => $this->password,
             'url' => $url
         ]);
     }
