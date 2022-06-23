@@ -14,6 +14,8 @@ use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Mail\accountVerification;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -52,10 +54,10 @@ class UserController extends Controller
 
         $item = [];
 
-
         $item['distributor_count'] = DB::table('distributors')->count();
 
         $item['staff_count'] = DB::table('staff')->count();
+
 
         // $distributor_count = Distributor::where('id','')->count();
 
@@ -84,10 +86,9 @@ class UserController extends Controller
         return back()->with('message', 'data added successfully');
     }
 
-
     public function show(User $user)
     {
-        $users = User::whereRole('sub')->paginate(10);
+        $users = $user->whereRole('sub')->paginate(10);
 
         $users = $users->filter(function ($user) {
             if ($user->status == 'Active' || $user->status == 'Deactivated') {
@@ -154,7 +155,9 @@ class UserController extends Controller
 
     public function updateStatus($email)
     {
-        DB::table('users')->whereEmail($email)->update(['status' => 'Active']);
+        $emailUser = Crypt::decryptString($email);
+
+        DB::table('users')->whereEmail($emailUser)->update(['status' => 'Active']);
 
         auth()->logout();
 

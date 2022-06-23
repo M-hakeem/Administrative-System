@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,4 +66,5 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'superUser' => \App\Http\Middleware\SuperUser::class,
     ];
+
 }

@@ -36,7 +36,7 @@ class DistributorController extends Controller
 
     public function show(Distributor $distributor)
     {
-        $distributors = Distributor::whereStatus('Active')->latest()->filter(request(['search']))
+        $distributors = $distributor->whereStatus('Active')->latest()->filter(request(['search']))
         ->paginate(10);
 
         return view('Distributor.distributor_data', compact('distributors'));
@@ -44,7 +44,7 @@ class DistributorController extends Controller
 
     public function suspended(Distributor $staff)
     {
-        $suspended = Distributor::whereStatus('Inactive')->latest()->filter(request(['search']))
+        $suspended = $staff->whereStatus('Inactive')->latest()->filter(request(['search']))
         ->paginate(10);
 
         return view('Distributor.suspended_distributor_data',compact('suspended'));

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 
 class accountVerification extends Mailable
@@ -38,7 +39,9 @@ class accountVerification extends Mailable
     public function build()
     {
         // $url = env('APP_URL').'status/'.md5($this->email);
-        $url =env('APP_URL')."/status/$this->email";
+        $email = Crypt::encryptString($this->email);
+
+        $url =env('APP_URL')."/status/$email";
         return $this->view('Mails.User_Update')->with([
             'fn' => $this->fname,
             'ln' => $this->lname,

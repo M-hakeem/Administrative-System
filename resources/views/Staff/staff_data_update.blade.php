@@ -63,13 +63,57 @@
                                         <div class="input_field"> <span><i aria-hidden="true" class="fa fa-list"></i></span>
                                             <select id="department" name="department">
                                                 <option value="{{ $staff->department }}">{{ $staff->department }}</option>
-                                                <option value="Administration/HR">Administration/HR</option>
-                                                <option value="Finance">Finance</option>
-                                                <option value="E-Commerce">E-Commerce</option>
-                                                <option value="R & D">R & D</option>
-                                                <option value="Production">Production</option>
-                                                <option value="Quality Assurance">Quality Assurance</option>
-                                                <option value="Maintenance">Maintenance</option>
+                                                @if ($staff->department == 'Administration/HR')
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="E-Commerce">E-Commerce</option>
+                                                    <option value="R & D">R & D</option>
+                                                    <option value="Production">Production</option>
+                                                    <option value="Quality Assurance">Quality Assurance</option>
+                                                    <option value="Maintenance">Maintenance</option>
+                                                @elseif($staff->department == 'Finance')
+                                                    <option value="Administration/HR">Administration/HR</option>
+                                                    <option value="E-Commerce">E-Commerce</option>
+                                                    <option value="R & D">R & D</option>
+                                                    <option value="Production">Production</option>
+                                                    <option value="Quality Assurance">Quality Assurance</option>
+                                                    <option value="Maintenance">Maintenance</option>
+                                                @elseif($staff->department == 'E-Commerce')
+                                                    <option value="Administration/HR">Administration/HR</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="R & D">R & D</option>
+                                                    <option value="Production">Production</option>
+                                                    <option value="Quality Assurance">Quality Assurance</option>
+                                                    <option value="Maintenance">Maintenance</option>
+                                                @elseif($staff->department == 'R & D')
+                                                    <option value="Administration/HR">Administration/HR</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="E-Commerce">E-Commerce</option>
+                                                    <option value="Production">Production</option>
+                                                    <option value="Quality Assurance">Quality Assurance</option>
+                                                    <option value="Maintenance">Maintenance</option>
+                                                @elseif($staff->department == 'Production')
+                                                    <option value="Administration/HR">Administration/HR</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="E-Commerce">E-Commerce</option>
+                                                    <option value="R & D">R & D</option>
+                                                    <option value="Quality Assurance">Quality Assurance</option>
+                                                    <option value="Maintenance">Maintenance</option>
+                                                @elseif($staff->department == 'Quality Assurance')
+                                                    <option value="Administration/HR">Administration/HR</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="E-Commerce">E-Commerce</option>
+                                                    <option value="R & D">R & D</option>
+                                                    <option value="Production">Production</option>
+                                                    <option value="Maintenance">Maintenance</option>
+                                                @elseif($staff->department == 'Maintenance')
+                                                    <option value="Administration/HR">Administration/HR</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="E-Commerce">E-Commerce</option>
+                                                    <option value="R & D">R & D</option>
+                                                    <option value="Production">Production</option>
+                                                    <option value="Quality Assurance">Quality Assurance</option>
+                                                @endif
+
                                             </select>
                                         </div>
                                         @error('department')

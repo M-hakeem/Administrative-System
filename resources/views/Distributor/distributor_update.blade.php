@@ -13,10 +13,17 @@
                                     <div class="col_half">
                                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
                                     <select id="title" name="title">
-                                    <option value="{{ $distributor->title }}">{{ $distributor->title }}</option>
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                    <option value="Miss">Miss</option>
+                                        <option value="{{ $distributor->title }}">{{ $distributor->title }}</option>
+                                        @if ($distributor->title == 'Mr')
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Miss">Miss</option>
+                                        @elseif($distributor->title == 'Mrs')
+                                            <option value="Mr">Mr</option>
+                                            <option value="Miss">Miss</option>
+                                        @else
+                                            <option value="Mr">Mr</option>
+                                            <option value="Mrs">Mrs</option>
+                                        @endif
                                     </select>
                                     </div>
                                     @error('title')

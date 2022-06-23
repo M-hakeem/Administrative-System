@@ -25,7 +25,7 @@ class StaffController extends Controller
 
     public function show(Staff $staff)
     {
-        $staffs = Staff::whereCategory('Permanent')->latest()->filter(request(['search']))
+        $staffs = $staff->whereCategory('Permanent')->latest()->filter(request(['search']))
         ->paginate(10);
 
         return view('Staff.staff_data',compact('staffs'));
@@ -33,7 +33,7 @@ class StaffController extends Controller
 
     public function casual(Staff $staff)
     {
-        $casuals = Staff::whereCategory('Casual')->latest()->filter(request(['search']))
+        $casuals = $staff->whereCategory('Casual')->latest()->filter(request(['search']))
         ->paginate(10);
 
         return view('Staff.casual_staff_data',compact('casuals'));
