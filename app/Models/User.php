@@ -58,7 +58,7 @@ class User extends Authenticatable
 
    public function prunable()
    {
-       return User::where('created_at', '<=', now()->addMinutes(5))
+       return User::where('created_at', '<=', now()->addHours(24))
        ->where('status','Inactive');
    }
 }
